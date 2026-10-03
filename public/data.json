@@ -206,6 +206,8 @@
     "phone": "+1 503 000 0000",
     "locationLabel": "Location",
     "location": "Portland, OR + Open to Remote",
+    "resumeLabel": "Résumé (PDF)",
+    "resumeHref": "resume.pdf",
     "manifesto": "Good software is never just functional.<br>It is the <em>clearest possible</em><br>expression of what it's for.",
     "bigLinkText": "Contact Me"
   },
