@@ -7,25 +7,43 @@
     {
       "id": "midcentury",
       "name": "Mid-Century",
-      "href": "style.css",
+      "href": "themes/style.css",
       "swatch": "rgb(218,165,65)"
     },
     {
       "id": "minimal",
       "name": "Minimal White",
-      "href": "tooplate-minimal-white-style.css",
+      "href": "themes/tooplate-minimal-white-style.css",
       "swatch": "rgb(0,0,0)"
     },
     {
       "id": "exhibit",
       "name": "Exhibit Studio",
-      "href": "tooplate-exhibit-style.css",
+      "href": "themes/tooplate-exhibit-style.css",
       "swatch": "rgb(249,248,246)"
     },
     {
       "id": "vora-bold",
       "name": "Vora Bold",
-      "href": "tooplate-vora-bold-style.css",
+      "href": "themes/tooplate-vora-bold-style.css",
+      "swatch": "rgb(0,0,0)"
+    },
+    {
+      "id": "windows95",
+      "name": "Retro Internet",
+      "href": "themes/windows95-style.css",
+      "swatch": "rgb(0,0,112)"
+    },
+    {
+      "id": "parallax-depth",
+      "name": "Parallax Depth",
+      "href": "themes/tooplate-parallax-depth-style.css",
+      "swatch": "rgb(0,0,0)"
+    },
+    {
+      "id": "hyperluv",
+      "name": "Hyperluv",
+      "href": "themes/templatemo-hyprluv-style.css",
       "swatch": "rgb(0,0,0)"
     }
   ],

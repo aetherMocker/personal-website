@@ -1,5 +1,7 @@
 <template>
-  <section id="hero">
+  <section id="hero" class="intro__hero">
+    <!-- TEMP: "intro__hero" lets the merged stylesheets style this section now that
+         their #hero rule is gone. Remove it when Hero is replaced by Intro. -->
     <span class="hero__ghost-year" aria-hidden="true">{{ hero.ghostYear }}</span>
     <div class="hero__topbar">
       <span>{{ hero.topbarLeft }}</span>

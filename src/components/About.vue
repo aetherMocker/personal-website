@@ -3,7 +3,9 @@
     <div class="sticky-label">
       <span>{{ about.label }}</span><span>{{ about.title }}</span>
     </div>
-    <section id="about">
+    <!-- TEMP: "intro__about" lets the merged stylesheets style this section now that
+         their #about rule is gone. Remove it when About is replaced by Intro. -->
+    <section id="about" class="intro__about">
       <span class="about__bg-num" aria-hidden="true">{{ about.bgNum }}</span>
       <span class="about__label">{{ about.label }}</span>
       <div class="about__content">
