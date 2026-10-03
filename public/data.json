@@ -1,0 +1,226 @@
+{
+  "site": {
+    "name": "Aether Mocker",
+    "year": "2026"
+  },
+  "themes": [
+    {
+      "id": "midcentury",
+      "name": "Mid-Century",
+      "href": "style.css",
+      "swatch": "rgb(218,165,65)"
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal White",
+      "href": "tooplate-minimal-white-style.css",
+      "swatch": "rgb(0,0,0)"
+    },
+    {
+      "id": "exhibit",
+      "name": "Exhibit Studio",
+      "href": "tooplate-exhibit-style.css",
+      "swatch": "rgb(249,248,246)"
+    },
+    {
+      "id": "vora-bold",
+      "name": "Vora Bold",
+      "href": "tooplate-vora-bold-style.css",
+      "swatch": "rgb(0,0,0)"
+    }
+  ],
+  "nav": [
+    { "label": "About", "href": "#about" },
+    { "label": "Work", "href": "#work" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "hero": {
+    "ghostYear": "2026",
+    "topbarLeft": "Software Engineering ~ Project Management",
+    "topbarRight": "Last Updated: 24 September 2026",
+    "headline": "Aether Mocker",
+    "tagline": "Software engineer and UX designer building<br>tools that respect the people using them —<br>from first sketch to shipped system.",
+    "scrollText": "↓ Scroll to explore",
+    "ctaText": "View Work",
+    "ctaHref": "#work",
+    "portrait": "images/portrait.jpg"
+  },
+  "marquee": [
+    "UX Research",
+    "Front-End Engineering",
+    "Design Systems",
+    "Accessibility",
+    "Prototyping",
+    "Project Management"
+  ],
+  "about": {
+    "bgNum": "01",
+    "label": "§ 01 — About",
+    "title": "About Me",
+    "portrait": "images/portrait.jpg",
+    "text": "I'm a <strong>software engineer and UX designer</strong> working at the seam between research and implementation. I care about the parts of a product that are easy to skip — the empty states, the error messages, the way a form feels on a phone. My background is in <strong>computer science and psychology</strong>, which is a roundabout way of saying I'm equally interested in why people do things and how to build the thing they'll do it with.",
+    "stats": [
+      { "value": "4+", "label": "Years Building" },
+      { "value": "12", "label": "Shipped Projects" },
+      { "value": "3", "label": "Research Studies" },
+      { "value": "1", "label": "Capstone Award" }
+    ],
+    "education": [
+      {
+        "institution": "University of Portland",
+        "degree": "B.S. Computer Science, B.A. Psychology",
+        "dates": "2022 – 2026",
+        "note": "Capstone: pilot-builder tooling for the Athletics Department. Undergraduate research in HCI and decision-making."
+      },
+      {
+        "institution": "Portland Community College",
+        "degree": "Transfer coursework, Computer Science",
+        "dates": "2020 – 2022",
+        "note": "Foundations in data structures, discrete math, and web development."
+      }
+    ]
+  },
+  "work": {
+    "label": "§ 02 — Experience",
+    "title": "Work Experience",
+    "meta": "04 Roles",
+    "items": [
+      {
+        "corner": "A—01",
+        "num": "001 / 2025",
+        "title": "Undergraduate Research — HCI Lab",
+        "featured": true,
+        "slug": "May 2025 – August 2026",
+        "desc": "Designed and ran a study on decision-making in scheduling tools. Built the study apparatus as a web app, analyzed results in R, and co-authored a paper on interface defaults.",
+        "tag": "Research",
+        "cover": "images/work-ugr-1.jpg"
+      },
+      {
+        "corner": "A—02",
+        "num": "002 / 2024",
+        "title": "Front-End Engineering Intern",
+        "featured": false,
+        "slug": "January 2024 – August 2024",
+        "desc": "Built accessible component primitives for a design system used across three product teams. Wrote the migration guide that moved 40+ screens off deprecated patterns.",
+        "tag": "Engineering",
+        "cover": "images/work-intern.jpg"
+      }
+    ]
+  },
+  "projects": {
+    "label": "§ 03 — Projects",
+    "title": "Major Projects",
+    "meta": "05 Projects",
+    "list": [
+      {
+        "num": "01",
+        "name": "Capstone — Pilot Builder",
+        "desc": "Full-stack tool for<br>athletics scheduling",
+        "images": [
+          "images/proj-pilot-1.jpg",
+          "images/proj-pilot-2.jpg"
+        ],
+        "blocks": [
+          { "label": "Context", "title": "University of Portland Athletics Department", "text": "The department managed pilot schedules in spreadsheets that had drifted out of sync with the actual flight rules. I built a tool that encoded those rules and made conflicts visible before they became problems." },
+          { "label": "My Role", "title": "Full-stack development & UX research", "text": "Ran stakeholder interviews with three coordinators, observed two scheduling sessions, designed the interface in Figma, then built it in React and Node. Shipped to internal users in spring 2026." },
+          { "label": "Outcome", "title": "Scheduling time cut from hours to minutes", "text": "Coordinators reported that conflict detection caught issues they would previously have discovered on the day of the flight. The tool is still in use and has been handed off to a student team." }
+        ]
+      },
+      {
+        "num": "02",
+        "name": "CISGO Abroad Map Visualization",
+        "desc": "Interactive map of<br>study-abroad programs",
+        "images": [
+          "images/proj-cisgo-1.jpg"
+        ],
+        "blocks": [
+          { "label": "Context", "title": "Center for International Study", "text": "Prospective students had no way to compare study-abroad programs geographically. The existing catalog was a PDF sorted alphabetically." },
+          { "label": "My Role", "title": "Design & front-end development", "text": "Mapped program data to a Leaflet map, designed the filter interaction, and built the accessibility layer so the map was usable by keyboard and screen reader." },
+          { "label": "Outcome", "title": "Advisor meetings up 30%", "text": "Advisors reported that students arrived at meetings already knowing which programs they wanted to discuss — the map did the first-pass filtering for them." }
+        ]
+      },
+      {
+        "num": "03",
+        "name": "Cribbage Game",
+        "desc": "Browser-based card<br>game with AI opponent",
+        "images": [],
+        "blocks": [
+          { "label": "Context", "title": "Personal project", "text": "I wanted a project that would force me to think about state machines and game AI without a framework doing the work for me." },
+          { "label": "My Role", "title": "Everything", "text": "Rules engine, AI opponent (minimax with hand-evaluation heuristics), UI, and animation. Vanilla JS, no dependencies." },
+          { "label": "Outcome", "title": "Shipped and playable", "text": "The AI beats me about 60% of the time, which feels like the right ratio for a game you play against yourself." }
+        ]
+      },
+      {
+        "num": "04",
+        "name": "Design System Migration",
+        "desc": "Component library<br>and migration tooling",
+        "images": [
+          "images/proj-ds-1.jpg",
+          "images/proj-ds-2.jpg"
+        ],
+        "blocks": [
+          { "label": "Context", "title": "Internal tooling at internship", "text": "Three product teams had diverged on button, input, and modal implementations. The design team had a Figma library; engineering had nothing matching it." },
+          { "label": "My Role", "title": "Component author & migration lead", "text": "Built the primitive components, wrote the codemod that migrated existing call sites, and ran the office hours where teams could bring questions." },
+          { "label": "Outcome", "title": "40+ screens migrated in 6 weeks", "text": "New feature work no longer required a design review to check whether the button matched the spec — the component was the spec." }
+        ]
+      },
+      {
+        "num": "05",
+        "name": "Plant Care Logging App",
+        "desc": "Personal project —<br>habit tracking for plants",
+        "images": [],
+        "blocks": [
+          { "label": "Context", "title": "Personal project", "text": "I kept killing plants. I wanted to understand whether the problem was the plants or my memory." },
+          { "label": "My Role", "title": "Design & development", "text": "Built a logging app with local-first storage, a small reminder system, and a UI that assumes you're holding a watering can in one hand." },
+          { "label": "Outcome", "title": "Plants alive, mostly", "text": "The app reduced missed waterings by enough that I now have more plants than I started with. This is both a success and a problem." }
+        ]
+      }
+    ],
+    "approach": {
+      "label": "How I Work",
+      "heading": "Start with<br>the problem,<br>not the brief.",
+      "text": "Every project begins with listening — to users, to constraints, to the parts of the system that already exist. I'd rather ask a dumb question in week one than build the wrong thing in week six."
+    },
+    "expect": {
+      "label": "What I Bring",
+      "items": [
+        "User research & interview facilitation",
+        "Interface design in Figma",
+        "Front-end implementation in React, vanilla JS, or whatever fits",
+        "Accessibility review & remediation",
+        "Documentation that outlives the project"
+      ]
+    },
+    "timeline": {
+      "label": "Typical Engagement",
+      "text": "Research phase — 1–3 weeks<br>Design & prototype — 2–4 weeks<br>Build & iterate — 4–12 weeks"
+    },
+    "cta": { "text": "Get in touch →", "href": "#contact" }
+  },
+  "contact": {
+    "label": "§ 04 — Contact",
+    "title": "Contact",
+    "getInTouchLabel": "Contact Me",
+    "email": "aethermock@gmail.com",
+    "phone": "+1 503 000 0000",
+    "locationLabel": "Location",
+    "location": "Portland, OR + Open to Remote",
+    "manifesto": "Good software is never just functional.<br>It is the <em>clearest possible</em><br>expression of what it's for.",
+    "bigLinkText": "Contact Me"
+  },
+  "footer": {
+    "logo": "AETHER",
+    "tagline": "Software & UX — Portland / Remote",
+    "copyright": "© 2026 Aether Mocker. All rights reserved.",
+    "attributionText": "Built from a Tooplate base",
+    "attributionHref": "https://www.tooplate.com/view/2161-vora-bold",
+    "center": "·AM·",
+    "socials": [
+      { "label": "GitHub", "href": "#" },
+      { "label": "LinkedIn", "href": "#" },
+      { "label": "Read.cv", "href": "#" },
+      { "label": "Email", "href": "mailto:aethermock@gmail.com" }
+    ]
+  }
+}
