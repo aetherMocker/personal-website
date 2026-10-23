@@ -1,49 +1,56 @@
 <template>
-  <div>
-    <div class="sticky-label">
-      <span>{{ contact.label }}</span><span>{{ contact.title }}</span>
+  <section id="contact" class="box contact">
+    <div class="box__head">
+      <span class="box__title">{{ contact.label }}</span>
+      <span class="box__side">{{ contact.title }}</span>
     </div>
-    <section id="contact">
-      <div class="contact__info" v-reveal>
-        <div class="contact__info-col">
-          <span class="contact__info-label">{{ contact.getInTouchLabel }}</span>
-          <span class="contact__info-value">{{ contact.email }}</span>
-          <span class="contact__info-value">{{ contact.phone }}</span>
-          <span class="contact__info-label" style="margin-top:1.2rem;">{{ contact.locationLabel }}</span>
-          <span class="contact__info-value" v-html="contact.location"></span>
+    <div class="box__body">
+      <a
+        :href="`mailto:${contact.email}`"
+        class="contact__big"
+        v-html="contact.bigLinkText"
+      ></a>
 
-          <a
-            v-if="contact.resumeHref"
-            :href="contact.resumeHref"
-            target="_blank"
-            rel="noopener"
-            class="btn"
-            style="margin-top:1.2rem; align-self:flex-start;"
-          >{{ contact.resumeLabel }}</a>
-        </div>
-        <div class="contact__info-col">
-          <p class="contact__manifesto" v-html="contact.manifesto"></p>
-        </div>
-      </div>
+      <p class="contact__quote" v-html="contact.manifesto"></p>
 
-      <div class="contact__big" v-reveal>
-        <a :href="`mailto:${contact.email}`" v-html="contact.bigLinkText"></a>
-      </div>
+      <dl class="rows">
+        <div class="rows__row">
+          <dt>{{ contact.getInTouchLabel }}</dt>
+          <dd>{{ contact.email }}</dd>
+        </div>
+        <div class="rows__row">
+          <dt>Phone</dt>
+          <dd>{{ contact.phone }}</dd>
+        </div>
+        <div class="rows__row">
+          <dt>{{ contact.locationLabel }}</dt>
+          <dd v-html="contact.location"></dd>
+        </div>
+        <div v-if="contact.resumeHref" class="rows__row">
+          <dt>Résumé</dt>
+          <dd>
+            <a
+              :href="contact.resumeHref"
+              target="_blank"
+              rel="noopener"
+              class="btn"
+            >{{ contact.resumeLabel }}</a>
+          </dd>
+        </div>
+      </dl>
 
-      <div class="footer-bar">
-        <div class="footer-bar__left">
-          <span class="footer-logo">{{ footer.logo }}</span>
-          <span class="footer-tagline">{{ footer.tagline }}</span>
-          <span class="footer-copy">{{ footer.copyright }}</span>
-          <a rel="nofollow" target="_blank" class="footer-tooplate" :href="footer.attributionHref">{{ footer.attributionText }}</a>
-        </div>
-        <span class="footer-bar__center" aria-hidden="true">{{ footer.center }}</span>
-        <div class="footer-bar__right">
-          <a v-for="soc in footer.socials" :key="soc.label" :href="soc.href" class="footer-link">{{ soc.label }}</a>
-        </div>
+      <div class="socials">
+        <a
+          v-for="soc in footer.socials"
+          :key="soc.label"
+          :href="soc.href"
+          class="btn"
+          target="_blank"
+          rel="noopener"
+        >{{ soc.label }}</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script setup>

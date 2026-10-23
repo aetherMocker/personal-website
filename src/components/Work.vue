@@ -1,51 +1,38 @@
 <template>
-  <div>
-    <div class="sticky-label">
-      <span>{{ work.label }}</span><span>{{ work.title }}</span>
+  <section id="work" class="box">
+    <div class="box__head">
+      <span class="box__title">{{ work.label }}</span>
+      <span class="box__side">{{ work.meta }}</span>
     </div>
-    <section id="work">
-      <div class="work__header">
-        <h2 class="section-title" v-reveal>{{ work.title }}</h2>
-        <span class="section-meta">{{ work.meta }}</span>
-      </div>
-      <div class="work__grid">
-        <div v-for="item in work.items" :key="item.num" class="work__item" v-reveal>
-          <span class="work__item-corner">{{ item.corner }}</span>
-
-          <template v-if="item.featured">
-            <div class="work__item-content">
-              <p class="work__item-num">{{ item.num }}</p>
-              <h3 class="work__item-title">{{ item.title }}</h3>
-            </div>
-            <div class="work__item-aside">
-              <figure v-if="item.cover" class="work__item-cover">
-                <img :src="item.cover" :alt="`${item.title} — project screenshot`" loading="lazy" />
-              </figure>
-              <span class="work__item-slug">{{ item.slug }}</span>
-              <p class="work__item-desc">{{ item.desc }}</p>
-              <span class="work__item-tag">{{ item.tag }}</span>
-            </div>
-          </template>
-
-          <template v-else>
-            <div class="work__item-content">
-              <p class="work__item-num">{{ item.num }}</p>
-              <h3 class="work__item-title">{{ item.title }}</h3>
-              <p class="work__item-desc">{{ item.desc }}</p>
-              <figure v-if="item.cover" class="work__item-cover">
-                <img :src="item.cover" :alt="`${item.title} — project screenshot`" loading="lazy" />
-              </figure>
-            </div>
-            <span class="work__item-tag">{{ item.tag }}</span>
-          </template>
+    <div class="box__body">
+      <article
+        v-for="item in work.items"
+        :key="item.num"
+        class="feed__item"
+        :class="{ 'feed__item--plain': !item.cover }"
+      >
+        <figure v-if="item.cover" class="feed__thumb">
+          <img
+            :src="item.cover"
+            :alt="`${item.title} — screenshot`"
+            class="duo"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <h3 class="feed__title">{{ item.title }}</h3>
+          <div class="feed__meta">
+            <span class="chip">{{ item.num }}</span>
+            <span v-if="item.tag">{{ item.tag }}</span>
+            <span v-if="item.slug">{{ item.slug }}</span>
+          </div>
+          <p class="feed__text">{{ item.desc }}</p>
         </div>
-      </div>
-    </section>
-  </div>
+      </article>
+    </div>
+  </section>
 </template>
 
 <script setup>
-defineProps({
-  work: { type: Object, required: true },
-})
+defineProps({ work: { type: Object, required: true } })
 </script>

@@ -4,48 +4,14 @@
     "year": "2026"
   },
   "themes": [
-    {
-      "id": "midcentury",
-      "name": "Mid-Century",
-      "href": "themes/style.css",
-      "swatch": "rgb(218,165,65)"
-    },
-    {
-      "id": "minimal",
-      "name": "Minimal White",
-      "href": "themes/tooplate-minimal-white-style.css",
-      "swatch": "rgb(0,0,0)"
-    },
-    {
-      "id": "exhibit",
-      "name": "Exhibit Studio",
-      "href": "themes/tooplate-exhibit-style.css",
-      "swatch": "rgb(249,248,246)"
-    },
-    {
-      "id": "vora-bold",
-      "name": "Vora Bold",
-      "href": "themes/tooplate-vora-bold-style.css",
-      "swatch": "rgb(0,0,0)"
-    },
-    {
-      "id": "windows95",
-      "name": "Retro Internet",
-      "href": "themes/windows95-style.css",
-      "swatch": "rgb(0,0,112)"
-    },
-    {
-      "id": "parallax-depth",
-      "name": "Parallax Depth",
-      "href": "themes/tooplate-parallax-depth-style.css",
-      "swatch": "rgb(0,0,0)"
-    },
-    {
-      "id": "hyperluv",
-      "name": "Hyperluv",
-      "href": "themes/templatemo-hyprluv-style.css",
-      "swatch": "rgb(0,0,0)"
-    }
+    { "name": "Ink",        "bg": "#cdc6a2", "fg": "#304c90" },
+    { "name": "Bluemarble", "bg": "#2f2f2f", "fg": "#4fd2e8" },
+    { "name": "Rose",       "bg": "#9f86a8", "fg": "#b6e33c" },
+    { "name": "Orange",     "bg": "#96abbe", "fg": "#ce6a48" },
+    { "name": "Denim",      "bg": "#2a354f", "fg": "#b36b2b" },
+    { "name": "Blueberry",  "bg": "#56392f", "fg": "#4c98b3" },
+    { "name": "Standard",  "bg": "#fcf3ea", "fg": "#1e1710" },
+    { "name": "Notepad",  "bg": "#f9e093", "fg": "#1d2c47" }
   ],
   "nav": [
     { "label": "About", "href": "#about" },
@@ -111,8 +77,7 @@
         "featured": true,
         "slug": "May 2025 – August 2026",
         "desc": "Designed and ran a study on decision-making in scheduling tools. Built the study apparatus as a web app, analyzed results in R, and co-authored a paper on interface defaults.",
-        "tag": "Research",
-        "cover": "images/work-ugr-1.jpg"
+        "tag": "Research"
       },
       {
         "corner": "A—02",
@@ -134,7 +99,7 @@
       {
         "num": "01",
         "name": "Capstone — Pilot Builder",
-        "desc": "Full-stack tool for<br>athletics scheduling",
+        "desc": "Full-stack tool for athletics scheduling (2025-2026)",
         "images": [
           "images/proj-pilot-1.jpg",
           "images/proj-pilot-2.jpg"
@@ -142,37 +107,40 @@
         "blocks": [
           { "label": "Context", "title": "University of Portland Athletics Department", "text": "The department managed pilot schedules in spreadsheets that had drifted out of sync with the actual flight rules. I built a tool that encoded those rules and made conflicts visible before they became problems." },
           { "label": "My Role", "title": "Full-stack development & UX research", "text": "Ran stakeholder interviews with three coordinators, observed two scheduling sessions, designed the interface in Figma, then built it in React and Node. Shipped to internal users in spring 2026." },
-          { "label": "Outcome", "title": "Scheduling time cut from hours to minutes", "text": "Coordinators reported that conflict detection caught issues they would previously have discovered on the day of the flight. The tool is still in use and has been handed off to a student team." }
+          { "label": "Outcome", "title": "Scheduling time cut from hours to minutes", "text": "Coordinators reported that conflict detection caught issues they would previously have discovered on the day of the flight. The tool is still in use and has been handed off to a student team." },
+          { "label": "Github", "title": "..." }
         ]
       },
       {
         "num": "02",
         "name": "CISGO Abroad Map Visualization",
-        "desc": "Interactive map of<br>study-abroad programs",
+        "desc": "Interactive map of study-abroad programs (2023-2024)",
         "images": [
           "images/proj-cisgo-1.jpg"
         ],
         "blocks": [
           { "label": "Context", "title": "Center for International Study", "text": "Prospective students had no way to compare study-abroad programs geographically. The existing catalog was a PDF sorted alphabetically." },
           { "label": "My Role", "title": "Design & front-end development", "text": "Mapped program data to a Leaflet map, designed the filter interaction, and built the accessibility layer so the map was usable by keyboard and screen reader." },
-          { "label": "Outcome", "title": "Advisor meetings up 30%", "text": "Advisors reported that students arrived at meetings already knowing which programs they wanted to discuss — the map did the first-pass filtering for them." }
+          { "label": "Outcome", "title": "Advisor meetings up 30%", "text": "Advisors reported that students arrived at meetings already knowing which programs they wanted to discuss — the map did the first-pass filtering for them." },
+          { "label": "Github", "title": "..." }
         ]
       },
       {
         "num": "03",
         "name": "Cribbage Game",
-        "desc": "Browser-based card<br>game with AI opponent",
+        "desc": "Browser-based card game with AI opponent (2023-2024)",
         "images": [],
         "blocks": [
           { "label": "Context", "title": "Personal project", "text": "I wanted a project that would force me to think about state machines and game AI without a framework doing the work for me." },
           { "label": "My Role", "title": "Everything", "text": "Rules engine, AI opponent (minimax with hand-evaluation heuristics), UI, and animation. Vanilla JS, no dependencies." },
-          { "label": "Outcome", "title": "Shipped and playable", "text": "The AI beats me about 60% of the time, which feels like the right ratio for a game you play against yourself." }
+          { "label": "Outcome", "title": "Shipped and playable", "text": "The AI beats me about 60% of the time, which feels like the right ratio for a game you play against yourself." },
+          { "label": "Github", "title": "..." }
         ]
       },
       {
         "num": "04",
         "name": "Design System Migration",
-        "desc": "Component library<br>and migration tooling",
+        "desc": "Component library and migration tooling",
         "images": [
           "images/proj-ds-1.jpg",
           "images/proj-ds-2.jpg"
@@ -180,24 +148,38 @@
         "blocks": [
           { "label": "Context", "title": "Internal tooling at internship", "text": "Three product teams had diverged on button, input, and modal implementations. The design team had a Figma library; engineering had nothing matching it." },
           { "label": "My Role", "title": "Component author & migration lead", "text": "Built the primitive components, wrote the codemod that migrated existing call sites, and ran the office hours where teams could bring questions." },
-          { "label": "Outcome", "title": "40+ screens migrated in 6 weeks", "text": "New feature work no longer required a design review to check whether the button matched the spec — the component was the spec." }
+          { "label": "Outcome", "title": "40+ screens migrated in 6 weeks", "text": "New feature work no longer required a design review to check whether the button matched the spec — the component was the spec." },
+          { "label": "Github", "title": "..." }
         ]
       },
       {
         "num": "05",
         "name": "Plant Care Logging App",
-        "desc": "Personal project —<br>habit tracking for plants",
+        "desc": "Personal project — habit tracking for plants (2026)",
         "images": [],
         "blocks": [
           { "label": "Context", "title": "Personal project", "text": "I kept killing plants. I wanted to understand whether the problem was the plants or my memory." },
           { "label": "My Role", "title": "Design & development", "text": "Built a logging app with local-first storage, a small reminder system, and a UI that assumes you're holding a watering can in one hand." },
-          { "label": "Outcome", "title": "Plants alive, mostly", "text": "The app reduced missed waterings by enough that I now have more plants than I started with. This is both a success and a problem." }
+          { "label": "Outcome", "title": "Plants alive, mostly", "text": "The app reduced missed waterings by enough that I now have more plants than I started with. This is both a success and a problem." },
+          { "label": "Github", "title": "..." }
+        ]
+      },
+      {
+        "num": "06",
+        "name": "Personal Website",
+        "desc": "Personal project — UI/UX design & Web-development (2026)",
+        "images": [],
+        "blocks": [
+          { "label": "Context", "title": "Personal project", "text": "I kept killing plants. I wanted to understand whether the problem was the plants or my memory." },
+          { "label": "My Role", "title": "Design & development", "text": "Built a logging app with local-first storage, a small reminder system, and a UI that assumes you're holding a watering can in one hand." },
+          { "label": "Outcome", "title": "Plants alive, mostly", "text": "The app reduced missed waterings by enough that I now have more plants than I started with. This is both a success and a problem." },
+          { "label": "Github", "title": "..." }
         ]
       }
     ],
     "approach": {
       "label": "How I Work",
-      "heading": "Start with<br>the problem,<br>not the brief.",
+      "heading": "Start with the problem, not the brief.",
       "text": "Every project begins with listening — to users, to constraints, to the parts of the system that already exist. I'd rather ask a dumb question in week one than build the wrong thing in week six."
     },
     "expect": {
@@ -226,7 +208,7 @@
     "location": "Portland, OR + Open to Remote",
     "resumeLabel": "Résumé (PDF)",
     "resumeHref": "resume.pdf",
-    "manifesto": "Good software is never just functional.<br>It is the <em>clearest possible</em><br>expression of what it's for.",
+    "manifesto": "Good software is never just functional. It is the <em>clearest possible</em> expression of what it's for.",
     "bigLinkText": "Contact Me"
   },
   "footer": {

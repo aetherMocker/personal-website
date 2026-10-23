@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=VT323&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#cdc6a2" />
 
   <!--
   Base: Tooplate 2161 Vora Bold
@@ -14,9 +15,9 @@
   Free HTML CSS Template
 
   Vue port. All copy is loaded from /data.json at runtime (see
-  src/composables/useSiteData.js). Theme stylesheets are swapped by
-  src/composables/useTheme.js, which injects a <link id="theme-link">
-  into <head> — the same technique the original app.js used.
+  src/composables/useSiteData.js). Themes are { name, bg, fg } pairs applied
+  as --bg / --fg on :root by src/composables/useTheme.js; the single
+  stylesheet (imported in main.js) consumes those custom properties.
   -->
 </head>
 <body>

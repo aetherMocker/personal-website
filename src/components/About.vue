@@ -1,50 +1,35 @@
 <template>
-  <div>
-    <div class="sticky-label">
-      <span>{{ about.label }}</span><span>{{ about.title }}</span>
+  <section id="about" class="box profile">
+    <div class="box__head">
+      <span class="box__title">{{ about.label }}</span>
+      <span class="box__side">{{ about.title }}</span>
     </div>
-    <!-- TEMP: "intro__about" lets the merged stylesheets style this section now that
-         their #about rule is gone. Remove it when About is replaced by Intro. -->
-    <section id="about" class="intro__about">
-      <span class="about__bg-num" aria-hidden="true">{{ about.bgNum }}</span>
-      <span class="about__label">{{ about.label }}</span>
-      <div class="about__content">
+    <div class="box__body">
+      <h1 class="wordmark">{{ siteName }}</h1>
+      <div class="kicker">{{ about.tagline || about.title }}</div>
 
-        <div class="about__intro">
-          <figure v-if="about.portrait" class="about__portrait">
-            <img :src="about.portrait" :alt="`Portrait of ${siteName}`" loading="lazy" />
-          </figure>
-          <div class="about__intro-text">
-            <p class="about__text" v-reveal v-html="about.text"></p>
-            <div class="about__stats" v-reveal>
-              <div v-for="s in about.stats" :key="s.label" class="stat">
-                <span class="stat__value">{{ s.value }}</span>
-                <span class="stat__label">{{ s.label }}</span>
-              </div>
-            </div>
-          </div>
+      <div class="profile__lead" :class="{ 'has-portrait': about.portrait }">
+        <figure v-if="about.portrait" class="profile__portrait">
+          <img
+            :src="about.portrait"
+            :alt="`Portrait of ${siteName}`"
+            class="duo"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <p class="profile__text" v-html="about.text"></p>
         </div>
-
-        <div v-if="about.education && about.education.length" class="about__education">
-          <div class="about__education-header">
-            <span class="about__education-label">Education</span>
-            <hr class="about__education-rule" />
-          </div>
-          <ul class="about__education-list">
-            <li v-for="edu in about.education" :key="edu.institution" class="edu-entry">
-              <div class="edu-entry__head">
-                <span class="edu-entry__dates">{{ edu.dates }}</span>
-                <span class="edu-entry__institution">{{ edu.institution }}</span>
-              </div>
-              <span class="edu-entry__degree">{{ edu.degree }}</span>
-              <p v-if="edu.note" class="edu-entry__note">{{ edu.note }}</p>
-            </li>
-          </ul>
-        </div>
-
       </div>
-    </section>
-  </div>
+
+      <div v-if="about.stats && about.stats.length" class="stats">
+        <div v-for="s in about.stats" :key="s.label" class="stat">
+          <span class="stat__lbl">{{ s.label }}</span>
+          <span class="stat__val">{{ s.value }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
