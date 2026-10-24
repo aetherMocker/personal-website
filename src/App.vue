@@ -34,21 +34,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { site } from './content/site'
-import { useTheme } from './composables/useTheme.js'
-import { useActiveSection } from './composables/useActiveSection.js'
+  import { ref } from 'vue'
+  import { site } from './content/site'
+  import { useTheme } from './composables/useTheme.js'
+  import { useActiveSection } from './composables/useActiveSection.js'
 
-import Rail from './components/Rail.vue'
-import About from './components/About.vue'
-import Work from './components/Work.vue'
-import Education from './components/Education.vue'
-import Projects from './components/Projects.vue'
-import Approach from './components/Approach.vue'
-import Contact from './components/Contact.vue'
+  import Rail from './components/Rail.vue'
+  import About from './components/About.vue'
+  import Work from './components/Work.vue'
+  import Education from './components/Education.vue'
+  import Projects from './components/Projects.vue'
+  import Approach from './components/Approach.vue'
+  import Contact from './components/Contact.vue'
 
-document.title = site.site.name
+  document.title = site.site.name
 
-const { activeThemeId, setTheme } = useTheme(ref(site.themes))
-const { activeId } = useActiveSection()
+  const { activeThemeId, setTheme } = useTheme(ref(site.themes))
+  const { activeId } = useActiveSection()
 </script>
