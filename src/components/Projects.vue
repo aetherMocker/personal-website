@@ -1,8 +1,33 @@
+<script setup>
+  import { computed, ref } from "vue";
+  import { site } from "../content/site";
+
+  const openNum = ref(null);
+  const query = ref("");
+
+  const filtered = computed(() => {
+    const q = query.value.trim().toLowerCase();
+    if (!q) return site.projects.list;
+    return site.projects.list.filter((p) => {
+      const hay = `${p.num} ${p.name} ${stripHtml(p.desc)}`.toLowerCase();
+      return hay.includes(q);
+    });
+  });
+
+  function stripHtml(html) {
+    return (html || "").replace(/<[^>]*>/g, " ");
+  }
+
+  function toggle(num) {
+    openNum.value = openNum.value === num ? null : num;
+  }
+</script>
+
 <template>
   <section id="projects" class="box">
     <div class="box__head">
-      <span class="box__title">{{ projects.label }}</span>
-      <span class="box__side">{{ projects.list.length }} Projects</span>
+      <span class="box__title">{{ site.projects.label }}</span>
+      <span class="box__side">{{ site.projects.list.length }} Projects</span>
     </div>
 
     <div class="box__body">
@@ -11,7 +36,7 @@
           <span>Find</span>
           <input v-model="query" type="search" placeholder="Filter projects" />
         </label>
-        <span class="toolbar__count">{{ filtered.length }} / {{ projects.list.length }}</span>
+        <span class="toolbar__count">{{ filtered.length }} / {{ site.projects.list.length }}</span>
       </div>
 
       <article
@@ -90,31 +115,3 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { computed, ref } from 'vue'
-
-const props = defineProps({
-  projects: { type: Object, required: true },
-})
-
-const openNum = ref(null)
-const query = ref('')
-
-const filtered = computed(() => {
-  const q = query.value.trim().toLowerCase()
-  if (!q) return props.projects.list
-  return props.projects.list.filter(p => {
-    const hay = `${p.num} ${p.name} ${stripHtml(p.desc)}`.toLowerCase()
-    return hay.includes(q)
-  })
-})
-
-function stripHtml(html) {
-  return (html || '').replace(/<[^>]*>/g, ' ')
-}
-
-function toggle(num) {
-  openNum.value = openNum.value === num ? null : num
-}
-</script>

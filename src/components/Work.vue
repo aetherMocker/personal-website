@@ -1,12 +1,16 @@
+<script setup>
+  import { site } from "../content/site";
+</script>
+
 <template>
   <section id="work" class="box">
     <div class="box__head">
-      <span class="box__title">{{ work.label }}</span>
-      <span class="box__side">{{ work.items.length }} Roles</span>
+      <span class="box__title">{{ site.work.label }}</span>
+      <span class="box__side">{{ site.work.items.length }} Roles</span>
     </div>
     <div class="box__body">
       <article
-        v-for="item in work.items"
+        v-for="item in site.work.items"
         :key="item.num"
         class="feed__item"
         :class="{ 'feed__item--plain': !item.cover }"
@@ -32,7 +36,3 @@
     </div>
   </section>
 </template>
-
-<script setup>
-defineProps({ work: { type: Object, required: true } })
-</script>
