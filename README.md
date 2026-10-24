@@ -1,8 +1,12 @@
 # Aether Mocker
 
-A personal portfolio site with swappable visual themes.
+A personal portfolio site presented as an interactive résumé — a three-column
+directory (`rail` / `feed` / `entries`) framed in solid rules, built so each
+section reads like a sheet of a well-set printed document. The palette is
+restricted to exactly two colours at a time and can be swapped between schemes
+at runtime. Content is driven by a single JSON file.
 
-It began as a **prototype in plain HTML** (static markup, CSS and a little vanilla JavaScript, built on the Tooplate 2161 *Vora Bold* template). Once the structure settled, it was **converted to Vue 3 + Vite** to allow more in-depth development and customization: componentized sections, content driven by a single JSON file, and a theme system that swaps whole stylesheets at runtime.
+Built with Vue 3 + Vite.
 
 ## Run it
 
@@ -11,96 +15,133 @@ npm install
 npm run dev
 ```
 
-Open the printed `localhost` URL (the dev server is configured for port `8000`).
 
-`npm run build` produces a static `dist/` folder; `npm run preview` serves it.
+A personal portfolio site with swappable visual themes.
+
+It began as a **prototype in plain HTML** (static markup, CSS and a little vanilla JavaScript, built on the Tooplate 2161 *Vora Bold* template). Once the structure settled, it was **converted to Vue 3 + Vite** to allow more in-depth development and customization: componentized sections, content driven by a single JSON file, and a theme system that swaps whole stylesheets at runtime.
 
 ## Project structure
 
 ```
-index.html                 Entry HTML + Google Fonts link for every theme
+index.html                 Entry HTML + Google Fonts link for every scheme
 vite.config.js
 public/                    Served as-is by Vite
-├── data.json              All site copy and the theme list
-├── themes/                One stylesheet per theme (see Themes)
-└── images/                Referenced from data.json (e.g. images/portrait.jpg)
+├── data.json              All site copy and the list of colour schemes
+├── images/                Referenced from data.json (e.g. images/portrait.jpg)
+└── vault/                 Optional password-protected pages (see Vaulting)
 src/
-├── main.js                Creates the app, registers the v-reveal directive
+├── main.js                Creates the app, imports the stylesheet, registers v-reveal
+├── style.css              The single stylesheet — reads --bg / --fg everywhere
 ├── App.vue                Loads data, owns theme + active-section state, lays out the page
 ├── components/
-│   ├── Sidebar.vue        Fixed nav rail
-│   ├── Hero.vue           Headline, tagline, CTA, theme toggle
-│   ├── Marquee.vue        Scrolling strip
-│   ├── About.vue          Bio, stats, education
-│   ├── Work.vue           Experience grid
-│   ├── Projects.vue       Accordion list + side panel
-│   ├── Contact.vue        Contact info + footer bar
-│   └── ThemeToggle.vue    Swatch buttons, one per theme
+│   ├── Rail.vue           Left rail: site functions, skills, colour schemes
+│   ├── About.vue          Wordmark, kicker, portrait, bio, stats
+│   ├── Work.vue           Experience feed
+│   ├── Education.vue      Education feed
+│   ├── Projects.vue       Filterable accordion with images / blocks / links
+│   ├── Approach.vue       Approach, expectations, timeline, CTA
+│   └── Contact.vue        Big mailto link, contact rows, socials
 ├── composables/
 │   ├── useSiteData.js     Fetches /data.json
-│   ├── useTheme.js        Swaps the theme <link> and remembers the choice
-│   └── useActiveSection.js  Highlights the current section in the sidebar
+│   ├── useTheme.js        Applies --bg / --fg for the active scheme, remembers the choice
+│   └── useActiveSection.js  Highlights the current section in the rail
 └── directives/
     └── reveal.js          v-reveal: fade-in on scroll
 ```
 
+## Layout
+
+The page is a four-track grid:
+
+```[ logo ] [ rail ] [ feed ] [ entries ]```
+
+* **Logo** — vertical wordmark pinned to the top of the page (horizontal on narrow screens). Wraps rather than overflowing; the wordmark's font-size is tied to the feed column width via** **`container-type: inline-size`.
+* **Rail** — fixed column holding site functions (nav), skills (optional), and the colour picker.
+* **Feed** —** **`About` →** **`Work` →** **`Education`. Reading material, one item per rule.
+* **Entries** —** **`Projects` →** **`Approach` →** **`Contact`. Slightly wider than the feed to give project imagery more room.
+
+Below 1180px the rail and one content column remain; the two content columns stack into a single track under the rail. Below 760px everything collapses to one column, the logo turns horizontal, and the rail becomes a two-up grid of boxes.
+
 ## From prototype to Vue
 
-| Prototype (HTML) | Vue |
-|---|---|
-| Hand-written sections in one HTML file | One component per section under `src/components/` |
-| Copy written directly into the markup | Loaded from `public/data.json` at runtime |
-| Theme switching with a script | `useTheme.js` updates a `<link id="theme-link">` in `<head>` and saves the choice to `localStorage` |
-| `data-reveal` + IntersectionObserver | `v-reveal` custom directive |
-| Active-nav IntersectionObserver | `useActiveSection.js` |
-| Project accordion script | Local `ref` in `Projects.vue` |
+
+| Prototype (HTML)                       | Vue                                                                                                 |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Hand-written sections in one HTML file | One component per section under`src/components/`                                                    |
+| Copy written directly into the markup  | Loaded from`public/data.json` at runtime                                                            |
+| Theme switching with a script          | `useTheme.js` updates a `<link id="theme-link">` in `<head>` and saves the choice to `localStorage` |
+| `data-reveal` + IntersectionObserver   | `v-reveal` custom directive                                                                         |
+| Active-nav IntersectionObserver        | `useActiveSection.js`                                                                               |
+| Project accordion script               | Local`ref` in `Projects.vue`                                                                        |
 
 ## Themes
 
-Each theme is a complete stylesheet in `public/themes/`. They all target the same class names, so components contain no theme-specific markup. Themes are chosen from the `themes` list in `data.json`; the first entry is the default, and the visitor's last choice is restored from `localStorage`.
+A theme is a pair of colours —** **`{ "name", "bg", "fg" }` — listed in
+`data.json`.** **`useTheme.js` writes the pair as** **`--bg` /** **`--fg` custom properties
+on** **`document.documentElement`, and the single stylesheet (`src/style.css`)
+reads those properties everywhere. No stylesheet is swapped, no** **`<link>` is
+injected.
 
-| Stylesheet | Theme in `data.json` | Origin |
-|---|---|---|
-| `style.css` | Mid-Century (default) | Derived from Tooplate 2161 Vora Bold |
-| `tooplate-minimal-white-style.css` | Minimal White | Tooplate 2141 Minimal White |
-| `tooplate-exhibit-style.css` | Exhibit Studio | Tooplate 2160 Exhibit Studio |
-| `tooplate-vora-bold-style.css` | Vora Bold | Tooplate 2161 Vora Bold |
-| `templatemo-hyprluv-style.css` | not registered yet | TemplateMo TM-627 HYPRLUV Slideshow |
-| `tooplate-parallax-depth-style.css` | not registered yet | Tooplate 2144 Parallax Depth |
-| `windows95-style.css` | not registered yet | Custom Windows 95 desktop chrome |
+The active theme is remembered in** **`localStorage` as** **`{ name, bg, fg }`; on the
+next visit the palette is applied before Vue mounts, so there is no flash of
+default colours while** **`data.json` loads. The fallback pair in** **`:root` is the
+"Ink" scheme (`#cdc6a2` /** **`#304c90`).
 
-See each file's header comment for details on where it came from.
+**Adding a theme:** add one object to** **`themes` in** **`data.json`. That's it.
 
-**Adding a theme:** drop the stylesheet in `public/themes/`, add `{ "id", "name", "href", "swatch" }` to the `themes` array in `data.json` (`href` is relative to the site root, e.g. `"themes/windows95-style.css"`), and make sure any web fonts it needs are in the Google Fonts link in `index.html`. The three "not registered yet" stylesheets are already in `public/themes/` and their fonts are already loaded, so they only need a `data.json` entry.
+```
+{ "name": "Rose", "bg": "#e6a0b4", "fg": "#b6e33c" }
+```
 
 ## Content (`public/data.json`)
 
-| Key | Used by |
-|---|---|
-| `site` (`name`, `year`) | Sidebar, document title |
-| `nav` | Sidebar. Each `href` must match a section id (`#hero`, `#about`, …) |
-| `themes` | ThemeToggle, `useTheme` |
-| `hero` | Hero |
-| `marquee` | Marquee |
-| `about` (`text`, `stats`, `education`, `portrait`, …) | About |
-| `work` (`items`) | Work. Items with `featured: true` get the two-column layout; `cover` is optional |
-| `projects` (`list`, `approach`, `expect`, `timeline`, `cta`) | Projects |
-| `contact`, `footer` | Contact |
 
-A handful of fields are rendered with `v-html` because they intentionally contain markup (`<br>`, `<strong>`, `<em>`): `hero.topbarRight`, `hero.tagline`, `about.text`, `projects.list[].desc`, `projects.approach.heading`, `projects.timeline.text`, `contact.location`, `contact.manifesto`, `contact.bigLinkText`. Keep markup out of every other field.
+| Key                                                          | Used by                                                          |
+| ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `site` (`name`, `year`)                                      | Logo, document title                                             |
+| `nav`                                                        | Rail. Each`href` must match a section id (`#about`, `#work`, …) |
+| `skills` (optional)                                          | Rail — a plain array of strings, rendered as a numbered list    |
+| `themes` (`name`, `bg`, `fg`)                                | Rail colour picker,`useTheme`                                    |
+| `about` (`text`, `stats`, `portrait`, …)                    | About                                                            |
+| `about.education` (`dates`, `institution`, `degree`, `note`) | Education                                                        |
+| `work` (`items`)                                             | Work.`cover` is optional; `featured` controls the wide layout    |
+| `projects` (`list`, `approach`, `expect`, `timeline`, `cta`) | Projects, Approach                                               |
+| `projects.list[].images` / `blocks` / `links`                | Project accordion body                                           |
+| `contact`, `footer`                                          | Contact                                                          |
+| `vault` (optional)                                           | Contact — links to password-protected pages (see Vaulting)      |
 
-Empty or missing optional values (`about.portrait`, `work.items[].cover`, `projects.list[].images`, `contact.resumeHref`) simply hide the element.
+A handful of fields are rendered with** **`v-html` because they intentionally contain markup (`<br>`,** **`<strong>`,** **`<em>`):** **`about.text`, `projects.list[].desc`,** **`projects.approach.heading`, `projects.timeline.text`,** **`contact.location`,** **`contact.manifesto`,`contact.bigLinkText`. Keep markup out of every other field.
 
-**Assets:** image paths in `data.json` are relative (`images/…`) and are served from `public/images/`, which currently holds placeholder images. A path with no matching file shows a broken image until the file is added, and `contact.resumeHref` expects a `resume.pdf` in `public/`.
+Empty or missing optional values (`about.portrait`,** **`work.items[].cover`, `projects.list[].images`,** **`projects.list[].links`) simply hide the element. Image paths in** **`data.json` are relative (`images/…`) and resolve to `public/images/`.
 
-## Work in progress: merging Hero and About
+## FUTURE: Vaulting private content
 
-Hero and About are being merged into a single **Intro** section (`#intro`). The seven stylesheets already contain the merged rules (`.intro__hero`, `.intro__about`, and the `#intro` wrapper), and the old `#hero` / `#about` rules have been removed from them.
+Even though most this information about ME is public and to be viewed publicly, I as a human being do not feel comfortable living in a world where LLM's can scrape and use anything public on the internet. So, I'm defending myself. For content like my images and resume, I am vaulting and poisoning the files. 
 
-The Intro component itself is not in the app yet. Until it lands, `Hero.vue` and `About.vue` each carry a temporary class (`intro__hero`, `intro__about`) so the merged stylesheets still style them. Both are marked `TEMP` in the source.
+GitHub Pages serves everything in** **`public/` publicly — including a PDF or a phone number sitting in** **`data.json`. Rather than publish those, keep them out of the repository and link to password-protected pages instead:
 
-When Intro replaces Hero and About:
+1. Run** **`pagevault lock resume.pdf` (or** **`lock contact.html`) locally. This produces a self-contained HTML file whose payload is encrypted with AES-256-GCM.
+2. Commit only the resulting** **`.html` file — to** **`public/vault/`, for example.
+3. Share the password out-of-band, not on the public site.
 
-1. Add `Intro.vue` to `src/components/` and use it in `App.vue` in place of `<Hero>` and `<About>`. `<Marquee>` currently sits between them, so decide where it goes once they're one block.
-2. Delete `Hero.vue` and `About.vue` (and their TEMP classes with them).
-3. Nav links to `#hero` / `#about` need to point at `#intro` (or the Intro markup needs to keep those ids), and `useActiveSection.js` only observes `main section[id]`, so check the sidebar highlight.
+`Contact.vue` can then render links to** **`/vault/resume.html` and `/vault/contact.html` alongside the public mailto and socials. Anything that should be private can move into those pages and out of** **`data.json`, and a `vault` object in** **`data.json` can hold the paths:
+
+```
+"vault": {
+  "resumeHref": "/vault/resume.html",
+  "contactHref": "/vault/contact.html",
+  "note": "Password available on request."
+}
+```
+
+The trade-off is explicit: the ciphertext is public, but without the password it is not readable by scrapers, crawlers, or someone who clones the repo. Once a legitimate visitor enters the password, decrypted content exists in their browser — this is a stop-crawlers, trust-readers model, which is the right balance for a résumé.
+
+For a folder of files behind one password instead of one page per item, `StaticVault` is the equivalent tool.
+
+```
+A couple of small notes on choices:
+
+- **`src/style.css`** — the README assumes the stylesheet lives at `src/style.css` and is imported from `main.js` (`import './style.css'`). If you end up placing it at `src/styles/main.css` instead, only the two lines in *Project structure* and *Themes* need to change; nothing else references the path.
+- **`vault` key** — I listed it as optional in the content table so the schema stays honest whether or not you use it. If you haven't added the key yet, `Contact.vue` can keep rendering `contact.resumeHref` exactly as before.
+- **`skills`** — the README marks it optional because `Rail.vue` hides the box if the array is missing or empty, so existing `data.json` files won't break.
+```

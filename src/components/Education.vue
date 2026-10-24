@@ -2,7 +2,7 @@
   <section id="education" class="box">
     <div class="box__head">
       <span class="box__title">Education</span>
-      <span class="box__side">{{ education.length }}</span>
+      <span class="box__side">{{ education.length }} Degrees</span>
     </div>
     <div class="box__body">
       <article

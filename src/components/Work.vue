@@ -2,7 +2,7 @@
   <section id="work" class="box">
     <div class="box__head">
       <span class="box__title">{{ work.label }}</span>
-      <span class="box__side">{{ work.meta }}</span>
+      <span class="box__side">{{ work.items.length }} Roles</span>
     </div>
     <div class="box__body">
       <article

@@ -2,7 +2,7 @@
   <section id="projects" class="box">
     <div class="box__head">
       <span class="box__title">{{ projects.label }}</span>
-      <span class="box__side">{{ projects.meta }}</span>
+      <span class="box__side">{{ projects.list.length }} Projects</span>
     </div>
 
     <div class="box__body">
