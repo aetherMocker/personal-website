@@ -23,10 +23,6 @@
           <dd>{{ site.contact.email }}</dd>
         </div>
         <div class="rows__row">
-          <dt>Phone</dt>
-          <dd>{{ site.contact.phone }}</dd>
-        </div>
-        <div class="rows__row">
           <dt>{{ site.contact.locationLabel }}</dt>
           <dd v-html="site.contact.location"></dd>
         </div>
