@@ -115,7 +115,7 @@ export const site = {
         links: [
           { label: "Prototype", href: "https://scrub-most-88172555.figma.site" },
           { label: "Repo", href: "https://github.com/aetherMocker/personal-portfolio" },
-          { label: "Published (TBD)", href: "#" } // TODO: Github pages publish!
+          /* { label: "Published (TBD)", href: "#" } // TODO: Github pages publish! */
         ]
       },
       {
@@ -146,7 +146,7 @@ export const site = {
           }
         ],
         links: [
-          { label: "Repo", href: "https://github.com/aetherMocker/plant-log" } // TODO: make repo public
+          { label: "Repo", href: "https://github.com/aetherMocker/plant-log" }
         ]
       },
       {
@@ -172,7 +172,7 @@ export const site = {
           }
         ],
         links: [
-          { label: "Repo", href: "https://github.com/aetherMocker/personal-website" } // TODO: make repo public
+          { label: "Repo", href: "https://github.com/aetherMocker/personal-website" }
         ]
       },
       {

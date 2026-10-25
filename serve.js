@@ -1,12 +1,21 @@
 /**
- * Aether Mocker - local server
+ * Aether's Personal Website
  *
  * Serves the production build (dist/) over your local network so you can
  * open the site on your phone while on the same Wi-Fi. No dependencies.
  *
+ * The build is made for GitHub Pages, so it lives under a base path
+ * (vite.config.js `base`). This server mirrors that: the site is served at
+ * http://localhost:8000/personal-website/ and "/" redirects there.
+ *
  * Usage:
  *   npm run build
  *   node serve.js
+ *
+ * Options (environment variables):
+ *   PORT=8001 node serve.js
+ *   BASE=/other-repo/ node serve.js     (must match vite.config.js `base`)
+ *   BASE=/ node serve.js                (if base is '/')
  */
 
 import http from 'node:http'
@@ -19,6 +28,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const PORT = Number(process.env.PORT) || 8000
 const DIST_DIR = path.join(__dirname, 'dist')
+
+// Normalise so BASE always starts and ends with "/"
+let BASE = process.env.BASE || '/personal-website/'
+if (!BASE.startsWith('/')) BASE = '/' + BASE
+if (!BASE.endsWith('/')) BASE += '/'
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -77,7 +91,22 @@ const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`)
   const urlPath = decodeURIComponent(url.pathname)
 
-  const rel = urlPath === '/' ? 'index.html' : urlPath.replace(/^\/+/, '')
+  // "/" and "/personal-website" (no trailing slash) go to the base path
+  if (urlPath === '/' || urlPath === BASE.slice(0, -1)) {
+    res.writeHead(302, { Location: BASE })
+    res.end()
+    return
+  }
+
+  // Anything outside the base path doesn't exist on GitHub Pages either
+  if (!urlPath.startsWith(BASE)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' })
+    res.end(`Not found. This site is served at ${BASE}`)
+    return
+  }
+
+  // Strip the base so "/personal-website/assets/x.js" maps to dist/assets/x.js
+  const rel = urlPath.slice(BASE.length) || 'index.html'
   const filePath = path.join(DIST_DIR, rel)
   if (!filePath.startsWith(DIST_DIR + path.sep) && filePath !== DIST_DIR) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' })
@@ -100,13 +129,13 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`\n  Aether Mocker is running.`)
-  console.log(`  Local:    http://localhost:${PORT}`)
+  console.log(`  Local:    http://localhost:${PORT}${BASE}`)
   const ips = localIPs()
   if (ips.length === 0) {
     console.log(`  Network:  (no LAN interface found — are you on Wi-Fi?)`)
   } else {
     for (const { iface, address } of ips) {
-      console.log(`  Network:  http://${address}:${PORT}   (${iface})`)
+      console.log(`  Network:  http://${address}:${PORT}${BASE}   (${iface})`)
     }
   }
   console.log(`\n  Phone must be on the same Wi-Fi network.`)
