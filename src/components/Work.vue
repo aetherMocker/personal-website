@@ -13,24 +13,23 @@
         v-for="item in site.work.items"
         :key="item.num"
         class="feed__item"
-        :class="{ 'feed__item--plain': !item.cover }"
       >
-        <figure v-if="item.cover" class="feed__thumb">
-          <img
-            :src="item.cover"
-            :alt="`${item.title} — screenshot`"
-            class="duo"
-            loading="lazy"
-          />
-        </figure>
-        <div>
-          <h3 class="feed__title">{{ item.title }}</h3>
-          <div class="feed__meta">
-            <span class="chip">{{ item.num }}</span>
-            <span v-if="item.tag">{{ item.tag }}</span>
-            <span v-if="item.slug">{{ item.slug }}</span>
-          </div>
+        <h3 class="feed__title">{{ item.title }}</h3>
+        <div class="feed__meta">
+          <span class="chip">{{ item.num }}</span>
+          <span v-if="item.tag">{{ item.tag }}</span>
+          <span v-if="item.slug">{{ item.slug }}</span>
+        </div>
+        <div class="feed__body" :class="{ 'feed__body--plain': !item.cover }">
           <p class="feed__text">{{ item.desc }}</p>
+          <figure v-if="item.cover" class="feed__thumb">
+            <img
+              :src="item.cover"
+              :alt="`${item.title} — screenshot`"
+              class="duo"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </article>
     </div>

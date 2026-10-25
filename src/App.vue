@@ -24,7 +24,7 @@
     </div>
 
     <footer class="foot">
-      <span>{{ site.footer.logo }} — {{ site.footer.tagline }}</span>
+      <span>{{ site.footer.lastUpdated }}</span>
       <span>{{ site.footer.copyright }}</span>
       <a :href="site.footer.attributionHref" target="_blank" rel="nofollow">
         {{ site.footer.attributionText }}
