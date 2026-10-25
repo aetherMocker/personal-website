@@ -181,17 +181,17 @@ body::after {
 
 /* ---------- Rail ---------- */
 .rail {
-  position: sticky;
-  top: 16px;
+  position: static;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   align-self: start;
-  max-height: calc(100vh / var(--zoom) - 32px);
-  overflow-y: auto;
-  scrollbar-width: none;
 }
-.rail::-webkit-scrollbar { display: none; }
+
+/* pin the rail only when the window is tall enough to show all of it */
+@media (min-height: 1000px) and (min-width: 901px) {
+  .rail { position: sticky; top: 16px; }
+}
 
 .nav-list, .skills { margin: -3px -4px; }
 .nav-list a, .skills li {
@@ -283,13 +283,26 @@ body::after {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 12px;
   border-top: 2px solid var(--fg);
 }
-.stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; padding: 8px 8px 0 0; }
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 8px 8px 0 0;
+}
 .stat + .stat { border-left: 1px solid var(--fg); padding-left: 8px; }
-.stat__val { font-weight: 900; font-stretch: 125%; font-size: 26px; line-height: 1; }
+.stat__val {
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(15px, 4.6cqi, 26px);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
 .stat__lbl {
   font-weight: 700;
   font-stretch: 110%;
@@ -298,6 +311,17 @@ body::after {
   line-height: 1.25;
   text-transform: uppercase;
   margin-top: 5px;
+  overflow-wrap: break-word;
+}
+
+/* narrow profile box: 2 x 2 instead of 4 in a row */
+@container (max-width: 460px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat { padding-bottom: 8px; }
+  .stat + .stat { border-left: 1px solid var(--fg); padding-left: 8px; }
+  .stat:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .stat:nth-child(n + 3) { border-top: 1px solid var(--fg); }
+  .stat__val { font-size: clamp(16px, 7cqi, 26px); }
 }
 
 /* ---------- Feeds (work, education) ---------- */
@@ -541,10 +565,7 @@ body::after {
   .logo__name { font-size: clamp(28px, calc(9vw / var(--zoom)), 40px); }
   .logo__sub { padding: 0; }
   .rail {
-    position: static;
     grid-row: auto;
-    max-height: none;
-    overflow: visible;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }

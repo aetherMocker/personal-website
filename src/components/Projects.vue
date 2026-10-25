@@ -1,26 +1,27 @@
 <script setup>
-  import { computed, ref } from "vue";
-  import { site } from "../content/site";
+import { computed, ref } from "vue";
+import { site } from "../content/site";
 
-  const openNum = ref(null);
-  const query = ref("");
+// Which project is open, tracked by its unique name (num is a date and can repeat).
+const openName = ref(null);
+const query = ref("");
 
-  const filtered = computed(() => {
-    const q = query.value.trim().toLowerCase();
-    if (!q) return site.projects.list;
-    return site.projects.list.filter((p) => {
-      const hay = `${p.num} ${p.name} ${stripHtml(p.desc)}`.toLowerCase();
-      return hay.includes(q);
-    });
+const filtered = computed(() => {
+  const q = query.value.trim().toLowerCase();
+  if (!q) return site.projects.list;
+  return site.projects.list.filter((p) => {
+    const hay = `${p.num} ${p.name} ${stripHtml(p.desc)}`.toLowerCase();
+    return hay.includes(q);
   });
+});
 
-  function stripHtml(html) {
-    return (html || "").replace(/<[^>]*>/g, " ");
-  }
+function stripHtml(html) {
+  return (html || "").replace(/<[^>]*>/g, " ");
+}
 
-  function toggle(num) {
-    openNum.value = openNum.value === num ? null : num;
-  }
+function toggle(name) {
+  openName.value = openName.value === name ? null : name;
+}
 </script>
 
 <template>
@@ -41,19 +42,19 @@
 
       <article
         v-for="proj in filtered"
-        :key="proj.num"
+        :key="proj.name"
         class="entry"
-        :class="{ open: openNum === proj.num }"
+        :class="{ open: openName === proj.name }"
       >
         <header class="entry__head">
           <button
             type="button"
             class="entry__toggle"
-            :aria-expanded="openNum === proj.num"
-            @click="toggle(proj.num)"
+            :aria-expanded="openName === proj.name"
+            @click="toggle(proj.name)"
           >
             <span class="entry__mark" aria-hidden="true">
-              {{ openNum === proj.num ? '−' : '+' }}
+              {{ openName === proj.name ? '−' : '+' }}
             </span>
             <span class="entry__num">{{ proj.num }}</span>
             <span class="entry__name">{{ proj.name }}</span>
