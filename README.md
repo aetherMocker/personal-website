@@ -6,24 +6,6 @@ Built with Vue 3 + Vite. Deployed to GitHub Pages.
 
 It began as a** ****prototype in plain HTML** (static markup, CSS and a little vanilla JavaScript, built on the Tooplate 2161** ***Vora Bold* template). Once the structure settled, it was** ****converted to Vue 3 + Vite** for more in-depth development and customization: componentized sections, content driven by one file, and a theme system that swaps two CSS colour variables at runtime.
 
-## Run it
-
-```bash
-npm install
-npm run dev          # dev server with hot reload
-```
-
-Preview the production build locally (including on your phone, over Wi-Fi):
-
-```bash
-npm run build
-node serve.js        # serves dist/ under the Pages base path
-# or
-npx vite preview --host
-```
-
-`serve.js` has no dependencies. It serves** **`dist/` at** **`http://localhost:8000/personal-website/` to mirror GitHub Pages, and** **`/` redirects there. Override with** **`PORT=8001 node serve.js` or** **`BASE=/other-repo/ node serve.js` (`BASE`must match** **`base` in** **`vite.config.js`).
-
 ## Project structure
 
 ```
@@ -147,37 +129,6 @@ The site is a project site at** **`https://aethermocker.github.io/personal-websi
 4. **Push** to** **`main` and watch the Actions tab. When both jobs are green the site is live.
 
 `.gitignore` should contain** **`node_modules`,** **`dist` and** **`.DS_Store`.
-
-**Gotchas**
-
-* GitHub's servers are case-sensitive and macOS isn't. Image filenames must match** **`site.js` exactly (`portrait.jpg` ≠** **`Portrait.JPG`).
-* Avoid root-absolute paths (starting with** **`/`) in** **`index.html`, CSS and** **`site.js`; they ignore the base path.
-* `site.footer.lastUpdated` is hard-coded; update it when you change the site.
-* Everything in** **`site.js` is bundled into public JavaScript, including email addresses.
-
-## FUTURE: Vaulting private content
-
-Even though most of this information about me is public and meant to be viewed publicly, I don't feel comfortable living in a world where LLMs can scrape and use anything public on the internet. So I'm defending myself. For content like my images and résumé, I am vaulting and poisoning the files.
-
-GitHub Pages serves everything in** **`public/` publicly, including a PDF or a phone number sitting in** **`site.js`. Rather than publish those, keep them out of the repository and link to password-protected pages instead:
-
-1. Run** **`pagevault lock resume.pdf` (or** **`lock contact.html`) locally. This produces a self-contained HTML file whose payload is encrypted with AES-256-GCM.
-2. Commit only the resulting** **`.html` file, to** **`public/vault/` for example.
-3. Share the password out-of-band, not on the public site.
-
-`Contact.vue` can then render links to** **`vault/resume.html` and** **`vault/contact.html` alongside the public mailto and socials (relative paths, no leading slash, so they work under the Pages base). Anything that should be private can move into those pages and out of** **`site.js`, and a** **`vault` object in** **`site.js` can hold the paths:
-
-```js
-vault: {
-  resumeHref: "vault/resume.html",
-  contactHref: "vault/contact.html",
-  note: "Password available on request."
-}
-```
-
-The trade-off is explicit: the ciphertext is public, but without the password it is not readable by scrapers, crawlers, or someone who clones the repo. Once a legitimate visitor enters the password, decrypted content exists in their browser. This is a stop-crawlers, trust-readers model, which is the right balance for a résumé.
-
-For a folder of files behind one password instead of one page per item,** **`StaticVault` is the equivalent tool.
 
 ## Credits
 
