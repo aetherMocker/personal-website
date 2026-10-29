@@ -30,7 +30,7 @@ const PORT = Number(process.env.PORT) || 8000
 const DIST_DIR = path.join(__dirname, 'dist')
 
 // Normalise so BASE always starts and ends with "/"
-let BASE = process.env.BASE || '/personal-website/'
+let BASE = process.env.BASE || '/'
 if (!BASE.startsWith('/')) BASE = '/' + BASE
 if (!BASE.endsWith('/')) BASE += '/'
 
