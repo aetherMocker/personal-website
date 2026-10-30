@@ -113,7 +113,7 @@ export const site = {
           }
         ],
         links: [
-          { label: "Prototype", href: "https://scrub-most-88172555.figma.site" },
+          { label: "Prototype", href: "https://scrub-most-88172555.figma.site/" },
           { label: "Repo", href: "https://github.com/aetherMocker/personal-portfolio" },
           /* { label: "Published (TBD)", href: "#" } // TODO: Github pages publish! */
         ]
